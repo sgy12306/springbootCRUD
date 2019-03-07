@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>人员信息</title>
+<link rel="stylesheet" type="text/css"
+	href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#grid').datagrid({
+			url : 'user/findUser',
+			columns : [ [ {
+				field : 'id',
+				title : '编号',
+				width : 50
+
+			}, {
+				field : 'name',
+				title : '姓名',
+				width : 100
+			}, {
+				field : 'userName',
+				title : '账号',
+				width : 200
+			},
+
+                {field:'operate',title:'操作',align:'center',width:$(this).width()*0.1,
+                    formatter:function(value, row, index){
+
+                        var str = '<a href="user/DeleteUser/"+index name="opera" class="easyui-linkbutton" ></a>';
+                        return str;
+
+                    }}
+
+			],
+
+			],
+            onLoadSuccess:function(data){
+                $("a[name='opera']").linkbutton({text:'删除',plain:true,iconCls:'icon-remove'});
+            }
+		});
+	});
+</script>
+</head>
+<body>
+	<table id="grid" width="100%"></table>
+	<br>
+
+	
+
+</body>
+</html>
