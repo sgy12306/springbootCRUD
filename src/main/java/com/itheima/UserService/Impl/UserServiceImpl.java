@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
         //redis全部删除，如果只删除一个呢？
     @CacheEvict(value ="user",allEntries = true)
     public User findUserByID(Long id) {
+        System.out.println("第二次提交");
         return userMapper.findUserByID(id);
     }
 
